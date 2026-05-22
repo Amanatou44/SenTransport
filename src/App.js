@@ -9,6 +9,7 @@ import DetailLigne from './DetailLigne';
 function App() {
   const [recherche, setRecherche] = useState("");
   const [ligneSelectionnee, setLigneSelectionnee] = useState(null);
+  const [nbRecherches, setNbRecherches] = useState(0);
 
   const lignes = [
     { id: 1, numero: "1", depart: "Parcelles Assainies",
@@ -44,35 +45,47 @@ function App() {
     l.arrivee.toLowerCase().includes(recherche.toLowerCase()) ||
     l.numero.includes(recherche)
   );
-  function handleClickLigne(ligne) {
-  if (ligneSelectionnee && ligneSelectionnee.id === ligne.id) {
-    setLigneSelectionnee(null); // re-clic = déselectionner
-  } else {
-    setLigneSelectionnee(ligne); // premier clic = sélectionner
+
+  function handleRecherche(valeur) {
+    setRecherche(valeur);
+    setNbRecherches(nbRecherches + 1);
   }
-}
+
+  function handleClickLigne(ligne) {
+    if (ligneSelectionnee && ligneSelectionnee.id === ligne.id) {
+      setLigneSelectionnee(null);
+    } else {
+      setLigneSelectionnee(ligne);
+    }
+  }
 
   return (
     <div className="App">
       <Header />
       <main className="contenu">
-        <Recherche valeur={recherche} onChange={setRecherche} />
+        <p className="compteur-recherche">
+          Vous avez effectué {nbRecherches} recherche{nbRecherches > 1 ? 's' : ''}
+        </p>
+        <Recherche valeur={recherche} onChange={handleRecherche} />
         <p className="resultat-recherche">
           {lignesFiltrees.length} ligne{lignesFiltrees.length > 1 ? 's' : ''} trouvee{lignesFiltrees.length > 1 ? 's' : ''}
         </p>
+        {lignesFiltrees.length === 0 && (
+          <p className="aucune-ligne">Aucune ligne trouvée</p>
+        )}
         {lignesFiltrees.map(ligne => (
-  <LigneBus
-    key={ligne.id}
-    numero={ligne.numero}
-    depart={ligne.depart}
-    arrivee={ligne.arrivee}
-    arrets={ligne.arrets}
-    couleur="#0a6e31"
-    estSelectionnee={ligneSelectionnee && ligneSelectionnee.id === ligne.id}
-    onClick={() => handleClickLigne(ligne)}
-  />
-))}
-{ligneSelectionnee && <DetailLigne ligne={ligneSelectionnee} />}
+          <LigneBus
+            key={ligne.id}
+            numero={ligne.numero}
+            depart={ligne.depart}
+            arrivee={ligne.arrivee}
+            arrets={ligne.arrets}
+            couleur="#0a6e31"
+            estSelectionnee={ligneSelectionnee && ligneSelectionnee.id === ligne.id}
+            onClick={() => handleClickLigne(ligne)}
+          />
+        ))}
+        {ligneSelectionnee && <DetailLigne ligne={ligneSelectionnee} />}
       </main>
       <Footer />
     </div>

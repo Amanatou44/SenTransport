@@ -1,5 +1,8 @@
 .recherche {
   margin-bottom: 20px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .recherche-input {
@@ -19,4 +22,18 @@
 
 .recherche-input::placeholder {
   color: #b2bec3;
+}
+
+.recherche-effacer {
+  padding: 10px 16px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.recherche-effacer:hover {
+  background-color: #c0392b;
 }
