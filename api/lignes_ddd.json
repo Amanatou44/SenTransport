@@ -92,5 +92,38 @@
       "HLM",
       "Sandaga"
     ]
+  } ,
+  {
+    "id": 7,
+    "numero": "31",
+    "depart": "Rufisque",
+    "arrivee": "Plateau",
+    "arrets": 20,
+    "listeArrets": [
+      "Rufisque Centre",
+      "Sangalkam",
+      "Keur Massar",
+      "Yeumbeul",
+      "Thiaroye",
+      "Pikine",
+      "Hann",
+      "Colobane",
+      "Plateau"
+    ]
+  },
+  {
+    "id": 8,
+    "numero": "42",
+    "depart": "Diamniadio",
+    "arrivee": "Sandaga",
+    "arrets": 15,
+    "listeArrets": [
+      "Diamniadio",
+      "Rufisque",
+      "Thiaroye",
+      "Pikine",
+      "Colobane",
+      "Sandaga"
+    ]
   }
 ]
